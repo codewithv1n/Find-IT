@@ -1,12 +1,13 @@
 <?php
 session_start();
-include ('../controllers/connect_db.php');
+include '../controllers/connect_db.php';
+include '../controllers/user_dashboard_process.php';
+
 
 if (!isset($_SESSION['user_id'])) {
     header("Location: login.php");
     exit();
 } 
-
 ?>
 
 <!DOCTYPE html>
@@ -25,15 +26,15 @@ if (!isset($_SESSION['user_id'])) {
 <header>
   <h1>FIND IT</h1>
 
-<div class="user-info">
-  <i class="fa fa-user-circle-o">
-   <h5></h5>
-  </i>
-</div>
+  <div class="user-info">
+     <i class="fa fa-user-circle-o">
+     <h5><?php echo htmlspecialchars($userName); ?></h5>
+    </i>
+  </div>
   
-   <div class="notification-bell">
+  <div class="notification-bell">
      <i class="fa fa-bell"><?php ?></i>
-   </div>
+  </div>
 
   <div class="user-actions">
     <button onclick="logout()" class="logout-btn">Logout</button>
@@ -47,7 +48,7 @@ if (!isset($_SESSION['user_id'])) {
 <div class="container">
 
  <div class="dashboard-card-1">
-    <h1>WELCOME BACK,<?php echo 'codewithv1n','!' ?></h1>
+    <h1>WELCOME BACK, <span><?php echo htmlspecialchars($userName); ?>!</span></h1>
      <div class="dashboard-card1-content" >
         <span><i class="fa fa-calendar"></i>Thursday, April 2, 2026</span>
         <span><i class="fa fa-history"></i>Joined since: September 19,2022</span>
@@ -84,10 +85,16 @@ if (!isset($_SESSION['user_id'])) {
         <p>Location: </p>
       </div>
     </div>
-  
-  
   </div> 
   
+
+
+  <div class="announcement-card">
+    <div class="announcement-header">
+      <i class="fa fa-bullhorn"></i><h4>Announcements</h4>
+    </div>
+    <img src="" alt="">
+  </div>
 
 
   
