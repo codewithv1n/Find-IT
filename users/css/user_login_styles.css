@@ -53,7 +53,7 @@ body {
 
 .form-group {
     text-align: left;
-    margin-bottom: 20px;
+    margin-bottom: 12px;
 }
 
 .form-group label {
@@ -107,7 +107,6 @@ input[type="password"] {
     color: #007bff;
     text-decoration: underline;
     font-weight: bold;
-    
 }
 
 .login-footer a:hover {
