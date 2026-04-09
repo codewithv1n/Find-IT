@@ -12,58 +12,12 @@ body {
   color: #111827;
 }
 
-/* ── HEADER ── */
-header {
-  position: fixed;
-  top: 0;
-  left: 240px; 
-  right: 0;
-  height: 67px;
-  background: #ffffff;
-  display: flex;
-  align-items: center;
-  padding: 30px 22px;
-  gap: 16px;
-  z-index: 90;
-  box-shadow: 0px 1px 1px 1px #00C3D0;
-}
-
-header h1 {
-  font-size: 18px;
-  font-weight: 800;
-  color: #000000;
-  letter-spacing: 0.06em;
-  margin-right: auto;
-  padding: 12px;
-}
-
-
-.logout-btn {
-  background: red;
-  border: 1px solid #000000;
-  color: #000000;
-  padding: 7px 18px;
-  border-radius: 20px;
-  font-family: Roboto;
-  font-size: 13px;
-  font-weight: 300;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.logout-btn:hover {
-  border-color: #ef4444;
-  color: #ef4444;
-  background: #fff5f5;
-}
-
 /* ── MAIN CONTAINER ── */
 .container {
-  margin-top: 64px;
+  margin-top: 30px;
   margin-left: 240px; 
-  padding: 32px;
+  padding: 30px;
 }
-
 
 /* ── DASHBOARD SECTION ── */
 .dashboard-card-1 {
@@ -72,7 +26,6 @@ header h1 {
     border-radius: 7px;
     border: 5px solid #fff;
 }
-
 
 .dashboard-card-1 h1 {
     font-family: 'Righteous', sans-serif; 
@@ -93,8 +46,6 @@ header h1 {
     font-family: 'Arial' , sans-serif;
 }
 
-
-
 .dashboard-card1-content {
     display: flex;
     align-items: center; 
@@ -103,7 +54,6 @@ header h1 {
     font-family: 'Inria Sans', sans-serif; 
     font-size: 14px;
 }
-
 
 .dashboard-card1-content span {
     display: flex;
@@ -117,8 +67,6 @@ header h1 {
     font-size: 16px;
     font-weight: 500;
 }
-
-
 
 /* RECENT POSTING CARD */
 .recent-posting-card {
@@ -157,8 +105,7 @@ header h1 {
 }
 
 
-
-/*ITO YUNG SA WEBKIT NA BWAKANG SHIT ILANG ORAS AKO TUMAGAL DIYAN*/
+/*ITO YUNG SA WEBKIT NA BWAKANANG SHIT ILANG ORAS AKO TUMAGAL DIYAN*/
 .recent-posting-card::-webkit-scrollbar {
     width: 8px; 
 }
@@ -173,9 +120,6 @@ header h1 {
     border-radius: 10px;
     border: 2px solid #f1f1f1; 
 }
-
-
-
 
 
 /* DATA DESIGN FOR RECENT POSTING */
@@ -220,7 +164,6 @@ header h1 {
     font-size: 11px;
     color: #555;
 }
-
 
 
 
