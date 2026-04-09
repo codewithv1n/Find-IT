@@ -1,0 +1,147 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+   background-color: #f4f7f9; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.signup-container {
+    background-color: #ffffff;
+    padding: 20px 30px; 
+    border-radius: 20px;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.05); 
+    width: 100%;
+    max-width: 440px; 
+}
+
+.logo-container img {
+    width: 120px;
+    height: 120px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #000;
+}
+
+.logo-container {
+    text-align: center;
+    width: 100%;
+}
+
+.signup-box {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch; 
+    width: 100%;
+}
+
+.signup-header h2 {
+    font-weight: 800;
+    font-size: 26px; 
+    color: #000;
+    margin-bottom: 10px;
+}
+
+.signup-header p {
+    font-size: 14px;
+    color: #555; 
+    margin-bottom: 15px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    width: 100%; 
+    margin-bottom: 12px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    font-size: 13px;
+    margin-bottom: 8px;
+    color: #333;
+    text-transform: uppercase; 
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+    width: 100%;
+    padding: 14px 18px; 
+    border: 2px solid #000; 
+    border-radius: 15px; 
+    font-size: 16px;
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+.btn-signup {
+    width: 100%;
+    padding: 15px;
+    background-color: #595959; 
+    color: white;
+    border: none;
+    border-radius: 15px; 
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    text-transform: uppercase;
+    margin-top: 15px;
+    transition: background 0.3s ease;
+}
+
+.btn-signup:hover {
+    background-color: #444; 
+}
+
+.signup-footer {
+    text-align: center; 
+    margin-top: 15px;
+    font-size: 14px;
+    color: #333;
+}
+
+.signup-footer a {
+    color: #007bff;
+    font-weight: bold;
+}
+
+.signup-footer a:hover {
+    text-decoration: underline; 
+}
+
+
+@media (max-width: 480px) {
+    .signup-container {
+        padding: 40px 25px; 
+        max-width: 100%; 
+    }
+
+    .signup-header h2 {
+        font-size: 22px; 
+    }
+
+    .signup-header p {
+        font-size: 13px;
+    }
+
+    input[type="text"],
+    input[type="password"],
+    input[type="email"] {
+        padding: 12px 15px; 
+        font-size: 15px;
+    }
+
+    .btn-signup {
+        padding: 12px;
+        font-size: 15px;
+    }
+}
