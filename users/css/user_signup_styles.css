@@ -118,7 +118,6 @@ input[type="email"] {
     text-decoration: underline; 
 }
 
-
 @media (max-width: 480px) {
     .signup-container {
         padding: 40px 25px; 
