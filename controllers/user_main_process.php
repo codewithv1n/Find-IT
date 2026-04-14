@@ -1,5 +1,7 @@
 <?php
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 include '../controllers/connect_db.php';
 
 // Ito yung logic ko for username, joined date displaying :>
@@ -34,26 +36,25 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
  $author = $_POST['username'];
  $itemName = $_POST['item_name'];
  $itemDescription = $_POST['item_description'];
- $itemCategory = $_POST['item_category'];
+ $itemImage = $_POST['image_item'];
  $itemDate = $_POST['item_date'];
 
-
- $stmt = $conn->prepare("INSERT INTO reported_items (username, item_name, item_description, item_category, item_date) VALUES (?, ?, ?, ?, ?)");
- $stmt->bind_param("sssss", $author, $itemName, $itemDescription, $itemCategory, $itemDate);
- $stmt->execute();
+    // ito yung query para makapag post direkta sa database
+    $stmt = $conn->prepare("INSERT INTO reported_items (username, item_name, item_description, image_path, item_date) VALUES (?, ?, ?, ?, ?)");
+    $stmt->bind_param("sssss", $author, $itemName, $itemDescription, $itemImage, $itemDate);
+    $stmt->execute();
  
- if($stmt->affected_rows > 0){
-    echo "Item reported successfully";
-    header("Location: ../users/dashboard.php");
- }else{
-    echo "Failed to report item";
- }
+    if($stmt->affected_rows > 0){
+        echo "Item reported successfully";
+        header("Location: ../users/dashboard.php");
+    }else{
+        echo "Failed to report item";
+    }
  
- exit();
+    exit();
 }
+
+
+
+
 ?>
-
-
-
-
-
