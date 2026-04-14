@@ -2,6 +2,13 @@
 include '../controllers/connect_db.php';
 include '../controllers/user_main_process.php';
 
+
+// nilagay ko to para d nila mabypass yung login
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.php");
+    exit();
+} 
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -44,16 +51,10 @@ include '../controllers/user_main_process.php';
         <textarea name="item_description" placeholder="Enter item description" required></textarea>
       </div>
 
-      <div class="form-group">
-        <label for="item_category">Item Category</label>
-        <select id="item_category" name="item_category" required>
-          <option value="">Select category</option>
-          <option value="electronics">Electronics</option>
-          <option value="clothing">Clothing</option>
-          <option value="accessories">Accessories</option>
-          <option value="other">Other</option>
-        </select>
-      </div>
+     <div class="form-group">
+       <label for="image_item">Item Image</label>
+       <input type="file" id="image_item" name="image_item" required>
+     </div>
 
       <div class="form-group">
         <label for="item_date">Item Date</label>
