@@ -31,39 +31,48 @@ if (isset($_SESSION['user_id'])) {
 }
 
 // ito naman yung ginawa ko para sa report_item para makapag post direkta sa database
-if ($_SERVER["REQUEST_METHOD"] === "POST"){
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
- $author = $_POST['username'];
- $itemName = $_POST['item_name'];
- $itemDescription = $_POST['item_description'];
- $itemImage = $_POST['image_item'];
- $itemDate = $_POST['item_date'];
+    $author = $_POST['username'];
+    $itemName = $_POST['item_name'];
+    $itemDescription = $_POST['item_description'];
+    $itemDate = $_POST['item_date'];
+    $imageItem = null;
+        
+   if (!empty($_FILES['item_image']['name'])) {
+        $imageItem = $_FILES['item_image']['name'];
+        $tmpName = $_FILES['item_image']['tmp_name'];
 
-    // ito yung query para makapag post direkta sa database
-    $stmt = $conn->prepare("INSERT INTO reported_items (username, item_name, item_description, image_path, item_date) VALUES (?, ?, ?, ?, ?)");
-    $stmt->bind_param("sssss", $author, $itemName, $itemDescription, $itemImage, $itemDate);
-    $stmt->execute();
- 
-    if($stmt->affected_rows > 0){
-        echo "Item reported successfully";
-        header("Location: ../users/dashboard.php");
-    }else{
-        echo "Failed to report item";
+        $folder = "../uploads/";
+        $destination = $folder . basename($imageItem);
+
+        if(!move_uploaded_file($tmpName, $destination)){
+            echo "Error: No Image uploaded in the folder";
+            exit();
+        }
     }
- 
+
+    $stmt = $conn->prepare("INSERT INTO reported_items (username, item_name, item_description, image_path, item_date) VALUES (?, ?, ?, ?, ?)");
+    $stmt->bind_param("sssss", $author, $itemName, $itemDescription, $imageItem, $itemDate);
+    $stmt->execute();
+
+    echo "Item reported successfully";
+    header("Location: ../users/report_item.php");
     exit();
 }
 
 
-// Logic for reported items
+// Ito yung logic para sa reported items AND dashboard recent item posting using array ginawa ko to 
+// para isahan nalang yung logic tapos dalawang function na yung gagana :>
 $query = "SELECT * FROM reported_items ORDER BY item_date DESC, id DESC";
 $result = mysqli_query($conn, $query);
 
 $items = [];
-
+$recent_items = [];
 if($result && mysqli_num_rows($result) > 0){
     while($row = mysqli_fetch_assoc($result)){
         $items[] = $row;
+        $recent_items[] = $row;
     }
 }
 
