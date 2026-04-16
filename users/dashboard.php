@@ -1,9 +1,8 @@
 <?php
-session_start();
 include '../controllers/connect_db.php';
 include '../controllers/user_main_process.php';
 
-
+// nilagay ko to para d nila mabypass yung login
 if (!isset($_SESSION['user_id'])) {
     header("Location: login.php");
     exit();
@@ -15,7 +14,8 @@ if (!isset($_SESSION['user_id'])) {
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Find IT - Dashboard</title>
+  <title>Find IT</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Righteous&display=swap">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="css/user_main_styles.css" />
   <link rel="stylesheet" href="../plugins/css/user_sidebar_design.css">
@@ -36,39 +36,26 @@ if (!isset($_SESSION['user_id'])) {
         <span><i class="fa fa-history"></i>Joined since: <?php echo htmlspecialchars($joinedDate); ?></span>
      </div>
  </div>
- 
 
 
   <div class="recent-posting-card">
    <h2 class="recent-header">
         <i class="fa fa-history"></i> Recent Item Posting
     </h2>
-     
-    <div class="posted-data-container">
-      <div class="posted-data">
-        <i class="fa fa-user-circle-o"></i><h6>codewithv1n</h6>
-        <p>Descriptions: </p>
-        <p>Location: </p>
+   <?php if (!empty ($recent_items)): ?>
+   <?php foreach ($recent_items as $recent_item) : ?>
+      <div class="posted-data-container">
+        <div class="posted-data">
+         <i class="fa fa-user-circle-o"></i><h6><?php echo htmlspecialchars($recent_item['username']); ?></h6>
+         <p><strong>Descriptions:</strong> <?php echo htmlspecialchars($recent_item['item_description']); ?></p>
+         <p><strong>Date:</strong> <?php echo htmlspecialchars($recent_item['item_date']); ?></p>
+        </div>
       </div>
-    </div>
-
-    <div class="posted-data-container">
-      <div class="posted-data">
-        <i class="fa fa-user-circle-o"></i><h6>codewithv1n</h6>
-        <p>Descriptions: </p>
-        <p>Location: </p>
-      </div>
-    </div>
-  
-    <div class="posted-data-container">
-      <div class="posted-data">
-        <i class="fa fa-user-circle-o"></i><h6>codewithv1n</h6>
-        <p>Descriptions: </p>
-        <p>Location: </p>
-      </div>
-    </div>
-  </div> 
-  
+    <?php endforeach; ?>
+    <?php else : ?>
+    <h5 class="no-recent-items">No recent items posted here!</h5>
+   <?php endif; ?>
+ </div> 
 
 
   <div class="announcement-card">
