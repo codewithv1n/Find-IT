@@ -55,7 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
 }
 
 
-// Logic for posted items
+// Logic for reported items
 $query = "SELECT * FROM reported_items ORDER BY item_date DESC, id DESC";
 $result = mysqli_query($conn, $query);
 
