@@ -15,7 +15,7 @@ if (!isset($_SESSION['user_id'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Find IT - Report Item</title>
+    <title>Find IT</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="css/user_main_styles.css" />
   <link rel="stylesheet" href="../plugins/css/user_sidebar_design.css">
@@ -34,7 +34,7 @@ if (!isset($_SESSION['user_id'])) {
     <div class="report-item-header">
       <h2>Report Item</h2>
     </div>
-    <form action="../controllers/user_main_process.php" method="POST">
+    <form action="../controllers/user_main_process.php" method="POST" enctype="multipart/form-data">
 
       <div class="form-group">
        <label for="author">Author</label>
@@ -52,8 +52,9 @@ if (!isset($_SESSION['user_id'])) {
       </div>
 
      <div class="form-group">
-       <label for="image_item">Item Image</label>
-       <input type="file" id="image_item" name="image_item" required>
+       <label for="item_image">Item Image</label>
+       <input type="file" id="item_image" name="item_image">
+       <p>*Optional</p>
      </div>
 
       <div class="form-group">
