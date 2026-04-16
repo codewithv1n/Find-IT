@@ -55,6 +55,16 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
 }
 
 
+// Logic for posted items
+$query = "SELECT * FROM reported_items ORDER BY item_date DESC, id DESC";
+$result = mysqli_query($conn, $query);
 
+$items = [];
+
+if($result && mysqli_num_rows($result) > 0){
+    while($row = mysqli_fetch_assoc($result)){
+        $items[] = $row;
+    }
+}
 
 ?>
