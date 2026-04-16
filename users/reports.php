@@ -47,7 +47,7 @@ if (!isset($_SESSION['user_id'])) {
                     </div>
                     
                     <div class="post-image">
-                        <img src="<?php echo htmlspecialchars($item['image_path']); ?>" alt="Item Image">
+                        <img src="../uploads/<?php echo htmlspecialchars ($item['image_path']); ?>" alt="Item Image">
                     </div>
 
                     <div class="post-actions">
