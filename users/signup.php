@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Find IT - Signup</title>
+  <title>Find IT</title>
   <link rel="stylesheet" href="css/user_signup_styles.css">
 </head>
 <body>
@@ -41,8 +41,8 @@
         </div>
       
      <?php if (isset($_GET['notif'])): ?>
-    <div style="background: #f8d7da; color: #721c24; padding: 10px; border-radius: 5px; border: 1px solid #f5c6cb; margin-bottom: 15px;">
-        <strong>Failed:</strong> <?php echo htmlspecialchars($_GET['notif']); ?>
+    <div class="alert-box">
+         <?php echo htmlspecialchars($_GET['notif']); ?>
     </div>
 <?php endif; ?>
 
