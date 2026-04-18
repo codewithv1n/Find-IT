@@ -1,6 +1,7 @@
 <?php 
 include '../controllers/connect_db.php';
 
+// kabaliktaran naman to pag may session na yung id mo diretso ka mapupunta sa dashboard na gawa ko
 if (isset($_SESSION['user_id'])) {
     header("Location: dashboard.php");
     exit();
@@ -12,12 +13,12 @@ if (isset($_SESSION['user_id'])) {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Find IT - Login  </title>
+  <title>Find IT</title>
   <link rel="stylesheet" href="css/user_login_styles.css">
 </head>
 <body>
   
-  <div class="login-container">
+  <div class="login-container"> 
     <div class="login-box">
       <div class="logo-container">
         <img src="../images/logo/Find IT.png" alt="Find It Logo">
@@ -38,7 +39,18 @@ if (isset($_SESSION['user_id'])) {
           <label for="password">Password</label>
           <input type="password" id="password" name="password" placeholder="Enter your Password" required>
         </div>
-
+<?php
+    if (isset($_GET['error'])) {
+    $error = $_GET['error'];
+  
+    if ($error == "2") {
+        echo '<p style="color: red;">Invalid Username</p>';
+    } 
+    elseif ($error == "1") {
+        echo '<p style="color: red;">Invalid password.</p>';
+    }
+}
+?>
         <button type="submit" class="btn-login">Login</button>
 
       </form>
@@ -48,6 +60,8 @@ if (isset($_SESSION['user_id'])) {
       </div>
     </div>
   </div>
+ 
 
+  <script src="js/user_login_functions.js"></script>
 </body>
 </html>
