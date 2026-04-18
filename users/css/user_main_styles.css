@@ -142,12 +142,15 @@ body.sidebar-collapsed .container {
   align-items: center;
   gap: 8px;
   font-size: 16px;
-  margin: 0 0 8px 0;
+  margin: 10 0 8px 0;
   font-weight: bold;
 }
 
 .posted-data i {
   font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: left;
 }
 
 .posted-data p {
@@ -157,13 +160,10 @@ body.sidebar-collapsed .container {
   line-height: 1.4;
 }
 
-.posted-data::after {
-  content: "1 minute ago";
-  position: absolute;
-  bottom: 10px;
-  right: 15px;
-  font-size: 11px;
-  color: #555;
+.no-recent-items {
+  text-align: center;
+  color: #65676b;
+  margin-top: 50px;
 }
 
 /* ANNOUNCEMENT SECTION */
@@ -274,6 +274,13 @@ body.sidebar-collapsed .container {
   text-align: right;
 }
 
+.form-group p {
+  font-size: 11px;
+  color: #7a8a99;
+  margin: 0;
+  padding-top: 9px;
+}
+
 .form-group input[type="text"],
 .form-group input[type="date"],
 .form-group textarea {
@@ -350,6 +357,165 @@ body.sidebar-collapsed .container {
 
 .btn-report:active {
   transform: scale(0.99);
+}
+
+/* REPORT FEED */
+.report-container {
+    background-color: #f0f2f5;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding-left: 15%;
+    padding-top: 80px;
+    box-sizing: border-box;
+}
+
+.report-box {
+    width: 100%;
+    max-width: 600px;
+}
+
+.post-header-content {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 5px 10px;
+}
+
+.post-title {
+    font-size: 1.1rem;
+    color: #1c1e21;
+    display: flex;
+    align-items: left;
+    gap: 8px;
+    font-weight: bold;
+}
+
+.post-card {
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin-bottom: 10px;
+    border: 1px solid #e0e0e0;
+}
+
+.post-user-info {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.post-user-info strong {
+    font-size: 1.1rem;
+    color: #1c1e21;
+    display: flex;
+    align-items: left;
+    gap: 5px;
+}
+
+.post-user-info .timestamp {
+    font-size: 0.85rem;
+    color: #65676b;
+    margin-top: 5px;
+    display: flex;
+    align-items: left;
+    gap: 5px;
+}
+.post-user-info .fa {
+    font-size: 1.1rem;
+    align-items: left;
+    display: flex;
+}
+
+.post-content {
+    padding: 15px;
+    min-height: 100px;
+    background-color: #fafafa;
+    color: #4b4f56;
+    line-height: 1.5;
+}
+
+.post-actions {
+    padding: 10px 15px;
+    display: flex;
+    gap: 10px;
+    border-top: 1px solid #f0f0f0;
+}
+.post-image {
+    width: 100%;
+    padding: 0 15px; 
+    box-sizing: border-box; 
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.post-image img {
+    width: 100%;       
+    max-width: 100%;   
+    height: auto;      
+    min-height: 200px; 
+    max-height: 400px; 
+    object-fit: cover; 
+    border-radius: 8px;
+    background-color: #cccccc;  
+    display: block;
+}
+
+.post-actions button {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 20px;
+    background-color: #8e8e8e;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+}
+
+.post-actions .fa {
+    margin-right: 8px;
+}
+
+.post-actions button:hover {
+    background-color: #6c757d;
+}
+
+.report-box > p {
+    text-align: center;
+    color: #65676b;
+    margin-top: 50px;
+}
+
+.about-container{
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding-left: 15%;
+    padding-top: 80px;
+    box-sizing: border-box;
+}
+
+.about-box {
+    padding: 20px;
+    max-width: 600px;
+    background-color: #fffbfb;
+    border-radius: 12px;
+}
+
+.about-box strong{
+   display: flex;
+   text-align: center;
+   margin-left: 40%;
 }
 
 /* ── RESPONSIVE ── */
@@ -436,6 +602,15 @@ body.sidebar-collapsed .container {
     padding-top: 0;
     min-width: unset;
   }
+}
+
+.alert-box {
+  background: #f8d7da; 
+  color: #721c24; 
+  padding: 10px; 
+  border-radius: 5px; 
+  border: 1px solid #f5c6cb; 
+  margin-bottom: 15px;
 }
 
 @media (max-width: 480px) {
