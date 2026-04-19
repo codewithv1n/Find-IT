@@ -21,9 +21,11 @@ if ($user = $result->fetch_assoc()) {
         exit();
 
     } else {
-       header("Location: ../users/login.php?error=invalid_credentials");
-       exit();
+        header("Location: ../users/login.php?error=1");
+        exit();
+    } 
+    }else {
+        header("Location: ../users/login.php?error=2");
+        exit();
     }
-}
-
 ?>
