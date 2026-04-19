@@ -30,6 +30,13 @@ if (!isset($_SESSION['user_id'])) {
 
 
 <div class="report-item-container">
+
+    <?php if (isset($_GET['notif'])): ?>
+    <div class="alert-box-report-item">
+         <?php echo htmlspecialchars($_GET['notif']); ?>
+    </div>
+<?php endif; ?>
+
   <div class="report-item-box">
     <div class="report-item-header">
       <h2>Report Item</h2>
