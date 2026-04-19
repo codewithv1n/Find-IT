@@ -104,7 +104,7 @@ body.sidebar-collapsed .recent-posting-card {
   align-items: center;
   gap: 15px;
   font-size: 1.2rem;
-  font-family: 'Inria Sans', sans-serif;
+  font-family: 'Verdana', sans-serif;
 }
 
 .recent-header i {
@@ -169,15 +169,25 @@ body.sidebar-collapsed .recent-posting-card {
 }
 
 .db-data {
-    color: #000;          
-    font-family: Verdana, Geneva, Tahoma, sans-serif ;       
-    display: inline-block;   
+  color: #000;          
+  font-family: Verdana, Geneva, Tahoma, sans-serif ;       
+  display: inline-block;   
 }
 
 .no-recent-items {
   text-align: center;
   color: #65676b;
   margin-top: 50px;
+  font-size: 1.2rem;
+  font-family: 'Verdana', sans-serif;
+}
+
+.no-report-alert {
+  text-align: center;
+  color: #65676b;
+  margin-top: 50px;
+  font-size: 1.2rem;
+  font-family: 'Verdana', sans-serif;
 }
 
 /* ANNOUNCEMENT SECTION */
@@ -515,7 +525,7 @@ body.sidebar-collapsed .report-item-box {
     color: #65676b;
     margin-top: 50px;
 }
-
+/* About Section */
 .about-container{
     padding: 20px;
     display: flex;
@@ -537,6 +547,73 @@ body.sidebar-collapsed .report-item-box {
    display: flex;
    text-align: center;
    margin-left: 40%;
+}
+
+/* My Posts Section */
+.post-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; 
+    padding: 88px 0 20px 15%;
+    background-color: #f0f2f5;
+    min-height: 100vh;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.post-data-container {
+    background: #fff;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    max-width: 650px;
+    width: 100%;
+    margin: 0 auto; 
+    display: block; 
+}
+
+.post-data h6 {
+    display: flex;
+    align-items: center;
+    font-size: 1.1rem;
+    padding: 10px;
+    margin: 0;
+    border-bottom: 2px solid #f0f2f5;
+}
+
+.post-data i {
+    display: inline-flex;
+    align-items: center;
+}
+
+.post-data p {
+    margin: 0;
+    padding: 10px 10px;
+}
+.post-data p:last-of-type {
+    padding-bottom: 20px;
+    font-size: 0.85rem;
+    color: #65676b;
+}
+
+.post-actions {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 15px;
+    border-top: 1px solid #eee;
+    background-color: #ffffff;
+}
+
+.btn-edit, .btn-delete {
+    flex: 1;
+    margin: 5px;
+    text-align: center;
+    text-decoration: none;
+    background-color: #939393;
+    color: white !important;
+    padding: 10px;
+    border-radius: 25px;
+    font-weight: bold;
+    font-size: 0.9rem;
 }
 
 /* ── RESPONSIVE ── */
@@ -640,6 +717,16 @@ body.sidebar-collapsed .report-item-box {
 
 .alert-box-report-item {
   background-color: #67C090; 
+  color: white; 
+  padding: 10px 20px; 
+  position: fixed;    
+  top: 14%;          
+  right: 20px;        
+  z-index: 1000;      
+}
+
+.alert-box-my-post{
+  background-color: #f15656; 
   color: white; 
   padding: 10px 20px; 
   position: fixed;    
