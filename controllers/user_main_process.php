@@ -30,7 +30,7 @@ if (isset($_SESSION['user_id'])) {
     $joinedDate = "N/A";
 }
 
-// ito naman yung ginawa ko para sa report_item para makapag post direkta sa database
+// ito naman yung ginawa ko para sa report_item para makapag post direkta sa database at ipasok ang image sa folder
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     $author = $_POST['username'];
@@ -52,13 +52,19 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
     }
 
+try{
     $stmt = $conn->prepare("INSERT INTO reported_items (username, item_name, item_description, image_path, item_date) VALUES (?, ?, ?, ?, ?)");
     $stmt->bind_param("sssss", $author, $itemName, $itemDescription, $imageItem, $itemDate);
     $stmt->execute();
 
-    echo "Item reported successfully";
-    header("Location: ../users/report_item.php");
-    exit();
+    $notif = "Item Posted Successfully"; 
+    header("Location: ../users/report_item.php?notif=" . urldecode($notif));
+
+}catch(Exception $notif){
+    $notif = "Item Failed to Post";
+    header ("Location: ../users/report_item.php?notif=". urldecode($notif));
+}
+   
 }
 
 
@@ -74,6 +80,41 @@ if($result && mysqli_num_rows($result) > 0){
         $items[] = $row;
         $recent_items[] = $row;
     }
+}
+
+
+
+// Logic to para sa self post para mareview mismo ng nag post kung okay ba yun or kung idedelete niya
+$query= ("SELECT * FROM reported_items WHERE username = ? ORDER BY item_date DESC, id DESC");
+$stmt = $conn->prepare($query);
+$stmt->bind_param("s", $userName);
+$stmt->execute();
+$result = $stmt->get_result();
+
+$my_posts = [];
+
+if($result && mysqli_num_rows($result) > 0){
+    while($row = mysqli_fetch_assoc($result)){
+        $my_posts[] = $row;
+    }
+}
+
+// ito yung logic ko para sa delete post
+if (isset($_GET['delete_post'])) {
+        $post_id = $_GET['delete_post']; 
+
+        $stmt = $conn->prepare("DELETE FROM reported_items WHERE id = ?");
+        $stmt->bind_param("i", $post_id);   
+        
+        if ($stmt->execute()) {
+            $notif = "Post Deleted Successfully";
+            header("Location: ../users/my_posts.php?notif=" . urlencode($notif));
+            exit();
+        }else{
+            $notif = "Post Failed to Delete";
+            header("Location: ../users/my_posts.php?notif=" . urlencode($notif));
+            exit();
+        }
 }
 
 ?>
