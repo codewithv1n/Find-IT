@@ -31,7 +31,7 @@ body.sidebar-collapsed .container {
 }
 
 .dashboard-card-1 h1 {
-  font-family: 'Righteous', sans-serif;
+  font-family: 'Verdana', sans-serif;
   font-size: 30px;
   text-transform: uppercase;
   margin: 0 0 10px 0;
@@ -47,7 +47,7 @@ body.sidebar-collapsed .container {
   font-weight: 500;
   color: #000;
   text-transform: lowercase;
-  font-family: 'Arial', sans-serif;
+  font-family: 'Plus Jakarta Sans', sans-serif;
 }
 
 .dashboard-card1-content {
@@ -77,8 +77,7 @@ body.sidebar-collapsed .container {
   background-color: #ffffff;
   padding: 25px;
   border-radius: 20px;
-  width: 100%;
-  max-width: 400px;
+  max-width: 420px;
   margin-left: auto;
   margin-top: 10px;
   height: 330px;
@@ -86,6 +85,11 @@ body.sidebar-collapsed .container {
   display: flex;
   flex-direction: column;
   gap: 15px;
+  transition: max-width 0.3s ease, margin-left 0.3s ease;
+}
+
+body.sidebar-collapsed .recent-posting-card {
+  max-width: 700px;
 }
 
 .recent-header {
@@ -160,6 +164,16 @@ body.sidebar-collapsed .container {
   line-height: 1.4;
 }
 
+.posted-data p strong{
+  padding-right: 3px;
+}
+
+.db-data {
+    color: #000;          
+    font-family: Verdana, Geneva, Tahoma, sans-serif ;       
+    display: inline-block;   
+}
+
 .no-recent-items {
   text-align: center;
   color: #65676b;
@@ -200,7 +214,7 @@ body.sidebar-collapsed .container {
   margin: 0;
   font-weight: 700;
   letter-spacing: 1px;
-  font-family: 'Inria Sans', sans-serif;
+  font-family: 'Verdana', sans-serif;
   color: #333;
   font-size: 1.2rem;
 }
@@ -215,8 +229,8 @@ body.sidebar-collapsed .container {
 /* REPORT ITEM SECTION */
 .report-item-container {
   display: flex;
-  justify-content: center; 
   align-items: center;     
+  justify-content:center;
   min-height: calc(100vh - 80px); 
   background: #f0f4f7;
   font-family: 'Barlow', sans-serif;
@@ -233,7 +247,13 @@ body.sidebar-collapsed .container {
   border-radius: 10px;
   padding: 30px 30px;
   width: 100%;
-  max-width: 620px;
+  max-width: 650px;
+  transition: max-width 0.3s ease, transform 0.3s ease;
+}
+
+body.sidebar-collapsed .report-item-box {
+  max-width: 780px;
+  transform: translateX(-100px);
 }
 
 .report-item-header {
@@ -248,7 +268,7 @@ body.sidebar-collapsed .container {
   text-transform: uppercase;
   color: #1a1a2e;
   margin: 0 0 6px;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Verdana', sans-serif;
 }
 
 .report-item-header p {
@@ -272,6 +292,7 @@ body.sidebar-collapsed .container {
   color: #7a8a99;
   padding-top: 9px;
   text-align: right;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .form-group p {
@@ -561,9 +582,13 @@ body.sidebar-collapsed .container {
     font-size: 13px;
   }
 
-  .dashboard-content {
-    flex-direction: column;
-  }
+ .dashboard-content {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  margin-top: 20px;
+  width: 100%;
+}
 
   .announcement-card {
     position: static;
@@ -611,6 +636,16 @@ body.sidebar-collapsed .container {
   border-radius: 5px; 
   border: 1px solid #f5c6cb; 
   margin-bottom: 15px;
+}
+
+.alert-box-report-item {
+  background-color: #67C090; 
+  color: white; 
+  padding: 10px 20px; 
+  position: fixed;    
+  top: 14%;          
+  right: 20px;        
+  z-index: 1000;      
 }
 
 @media (max-width: 480px) {
