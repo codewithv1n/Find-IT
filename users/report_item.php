@@ -17,10 +17,8 @@ if (!isset($_SESSION['user_id'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Find IT</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="css/user_main_styles.css" />
-  <link rel="stylesheet" href="../plugins/css/user_sidebar_design.css">
-  <link rel="stylesheet" href="../plugins/css/user_footer_design.css">
-  <link rel="stylesheet" href="../plugins/css/user_header_design.css">
+  <link rel="stylesheet" href="css/user_main_styles.css?v=3" />
+  <link rel="stylesheet" href="../plugins/css/user_plugins_design.css?v=3">
 </head>
 <body>
   
@@ -61,15 +59,15 @@ if (!isset($_SESSION['user_id'])) {
      <div class="form-group">
        <label for="item_image">Item Image</label>
        <input type="file" id="item_image" name="item_image">
-       <p>*Optional</p>
+       <h6>*Optional</h6>
      </div>
 
       <div class="form-group">
         <label for="item_date">Item Date</label>
-        <input type="date" id="item_date" name="item_date" required>
+        <input type="date" value=<?php echo htmlspecialchars($item_date);?> name="item_date" disabled>
       </div>
 
-      <button type="submit" class="btn-report">Report Item</button>
+      <button type="submit" class="btn-report" id ="btnReport">Report Item</button>
     </form>
   </div>
 
@@ -79,6 +77,5 @@ if (!isset($_SESSION['user_id'])) {
 <?php include '../plugins/user_footer.php'; ?>
 
 <script src="js/user_main_functions.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>

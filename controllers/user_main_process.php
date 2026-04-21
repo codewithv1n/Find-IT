@@ -69,10 +69,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   
 }
 
-// ito naman para sa pagdisplay ng petsa sa dashboard
+// ito naman para sa pagdisplay ng petsa sa dashboard at sa report item
 date_default_timezone_set('Asia/Manila');
 $current_date = date('l, F j, Y');
-
+$item_date = date('Y-m-d');
 
 // Ito yung logic para sa reported items AND dashboard recent item posting using array ginawa ko to 
 // para isahan nalang yung logic tapos dalawang function na yung gagana :>
