@@ -3,6 +3,5 @@ document.addEventListener("DOMContentLoaded", () => {
     const btnSignup = document.querySelector(".btn-signup");
     btnSignup.addEventListener("click", () => {
         btnSignup.innerHTML = "Signing up...";
-        btnSignup.disabled = false;
     })
 })
