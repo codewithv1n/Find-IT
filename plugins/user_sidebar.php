@@ -11,11 +11,11 @@
    </div>
 
     <ul>
-        <li><a href="dashboard.php">Dashboard</a></li>
-        <li><a href="report_item.php">Report Item</a></li>
-        <li><a href="reports.php">Reported Items</a></li>
-        <li><a href="my_posts.php">My Posts</a></li>
-        <li><a href="about.php">About</a></li>
+        <li><a href="dashboard.php"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+        <li><a href="report_item.php"><i class="fa fa-exclamation-circle"></i> Report Item</a></li>
+        <li><a href="reports.php"><i class="fa fa-history"></i> Reported Items</a></li>
+        <li><a href="my_posts.php"><i class="fa fa-user"></i> My Posts</a></li>
+        <li><a href="about.php"><i class="fa fa-info-circle"></i> About</a></li>
     </ul>
 
 </div>
