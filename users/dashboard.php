@@ -15,12 +15,9 @@ if (!isset($_SESSION['user_id'])) {
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Find IT</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Righteous&display=swap">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="css/user_main_styles.css" />
-  <link rel="stylesheet" href="../plugins/css/user_sidebar_design.css">
-  <link rel="stylesheet" href="../plugins/css/user_footer_design.css">
-  <link rel="stylesheet" href="../plugins/css/user_header_design.css">
+  <link rel="stylesheet" href="../plugins/css/user_plugins_design.css">
 </head>
 <body>
 
@@ -32,7 +29,7 @@ if (!isset($_SESSION['user_id'])) {
  <div class="dashboard-card-1">
     <h1>WELCOME BACK, <span><?php echo htmlspecialchars($userName); ?>!</span></h1>
      <div class="dashboard-card1-content" >
-        <span><i class="fa fa-calendar"></i>Thursday, April 2, 2026</span>
+        <span><i class="fa fa-calendar"></i><?php echo htmlspecialchars ($current_date); ?></span>
         <span><i class="fa fa-history"></i>Joined since: <?php echo htmlspecialchars($joinedDate); ?></span>
      </div>
  </div>
@@ -47,8 +44,9 @@ if (!isset($_SESSION['user_id'])) {
       <div class="posted-data-container">
         <div class="posted-data">
          <i class="fa fa-user-circle-o"></i><h6><?php echo htmlspecialchars($recent_item['username']); ?></h6>
-         <p><strong>Descriptions:</strong> <?php echo htmlspecialchars($recent_item['item_description']); ?></p>
-         <p><strong>Date:</strong> <?php echo htmlspecialchars($recent_item['item_date']); ?></p>
+         <p><strong>Item Name:</strong> <span class="db-data"><?php echo htmlspecialchars($recent_item['item_name']); ?></span></p>
+         <p><strong>Descriptions:</strong> <span class="db-data"><?php echo htmlspecialchars($recent_item['item_description']);?></span></p>
+         <p><strong>Date:</strong> <span class="db-data"><?php echo htmlspecialchars($recent_item['item_date']); ?></span></p>
         </div>
       </div>
     <?php endforeach; ?>
