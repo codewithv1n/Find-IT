@@ -52,20 +52,26 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
     }
 
-try{
+ 
     $stmt = $conn->prepare("INSERT INTO reported_items (username, item_name, item_description, image_path, item_date) VALUES (?, ?, ?, ?, ?)");
     $stmt->bind_param("sssss", $author, $itemName, $itemDescription, $imageItem, $itemDate);
-    $stmt->execute();
 
+
+    if($stmt->execute()){
     $notif = "Item Posted Successfully"; 
     header("Location: ../users/report_item.php?notif=" . urldecode($notif));
-
-}catch(Exception $notif){
+    exit();
+    }else{
     $notif = "Item Failed to Post";
     header ("Location: ../users/report_item.php?notif=". urldecode($notif));
+    exit();
+    }
+  
 }
-   
-}
+
+// ito naman para sa pagdisplay ng petsa sa dashboard
+date_default_timezone_set('Asia/Manila');
+$current_date = date('l, F j, Y');
 
 
 // Ito yung logic para sa reported items AND dashboard recent item posting using array ginawa ko to 
@@ -83,7 +89,6 @@ if($result && mysqli_num_rows($result) > 0){
 }
 
 
-
 // Logic to para sa self post para mareview mismo ng nag post kung okay ba yun or kung idedelete niya
 $query= ("SELECT * FROM reported_items WHERE username = ? ORDER BY item_date DESC, id DESC");
 $stmt = $conn->prepare($query);
@@ -93,10 +98,9 @@ $result = $stmt->get_result();
 
 $my_posts = [];
 
-if($result && mysqli_num_rows($result) > 0){
-    while($row = mysqli_fetch_assoc($result)){
-        $my_posts[] = $row;
-    }
+// Gamitin natin ang fetch_assoc() sa loop
+while($row = $result->fetch_assoc()){
+    $my_posts[] = $row;
 }
 
 // ito yung logic ko para sa delete post
@@ -112,7 +116,7 @@ if (isset($_GET['delete_post'])) {
             exit();
         }else{
             $notif = "Post Failed to Delete";
-            header("Location: ../users/my_posts.php?notif=" . urlencode($notif));
+            echo '$notif';
             exit();
         }
 }
