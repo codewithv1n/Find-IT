@@ -16,8 +16,8 @@ if (!isset($_SESSION['user_id'])) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Find IT</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="css/user_main_styles.css" />
-  <link rel="stylesheet" href="../plugins/css/user_plugins_design.css">
+  <link rel="stylesheet" href="css/user_main_styles.css?v=3" />
+  <link rel="stylesheet" href="../plugins/css/user_plugins_design.css?v=3">
 </head>
 <body>
 
