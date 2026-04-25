@@ -172,6 +172,8 @@ body.sidebar-collapsed .recent-posting-card {
   color: #000;          
   font-family: Verdana, Geneva, Tahoma, sans-serif ;       
   display: inline-block;   
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .no-recent-items {
@@ -247,7 +249,7 @@ body.sidebar-collapsed .recent-posting-card {
   width: 100%; 
   padding-left: 15%;
   padding-top: 88px;
-  padding-bottom: 20px;
+  padding-bottom: 80px;
   box-sizing: border-box;
 }
 
@@ -299,15 +301,15 @@ body.sidebar-collapsed .report-item-box {
   font-weight: 600;
   letter-spacing: 0.07em;
   text-transform: uppercase;
-  color: #7a8a99;
+  color: #000;
   padding-top: 9px;
   text-align: right;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-.form-group p {
+.form-group h6 {
   font-size: 11px;
-  color: #7a8a99;
+  color: #000;
   margin: 0;
   padding-top: 9px;
 }
@@ -399,6 +401,7 @@ body.sidebar-collapsed .report-item-box {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     padding-left: 15%;
     padding-top: 80px;
+    padding-bottom: 80px;
     box-sizing: border-box;
 }
 
@@ -467,6 +470,8 @@ body.sidebar-collapsed .report-item-box {
     background-color: #fafafa;
     color: #4b4f56;
     line-height: 1.5;
+    word-break: break-word;
+    overflow-wrap: break-word;
 }
 
 .post-actions {
@@ -533,6 +538,7 @@ body.sidebar-collapsed .report-item-box {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     padding-left: 15%;
     padding-top: 80px;
+    padding-bottom: 80px;
     box-sizing: border-box;
 }
 
@@ -554,7 +560,7 @@ body.sidebar-collapsed .report-item-box {
     display: flex;
     flex-direction: column;
     gap: 20px; 
-    padding: 88px 0 20px 15%;
+    padding: 88px 0 80px 15%;
     background-color: #f0f2f5;
     min-height: 100vh;
     width: 100%;
@@ -588,6 +594,8 @@ body.sidebar-collapsed .report-item-box {
 .post-data p {
     margin: 0;
     padding: 10px 10px;
+    word-break: break-word;
+    overflow-wrap: break-word;
 }
 .post-data p:last-of-type {
     padding-bottom: 20px;
@@ -603,69 +611,197 @@ body.sidebar-collapsed .report-item-box {
     background-color: #ffffff;
 }
 
-.btn-edit, .btn-delete {
+.btn-delete {
     flex: 1;
     margin: 5px;
     text-align: center;
     text-decoration: none;
     background-color: #939393;
-    color: white !important;
+    color: white;
     padding: 10px;
     border-radius: 25px;
     font-weight: bold;
     font-size: 0.9rem;
 }
+.post-actions button {
+    flex: 1;
+    margin: 5px;
+    text-align: center;
+    text-decoration: none;
+    background-color: #939393;
+    color: white;
+    padding: 10px;
+    border-radius: 25px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    text-transform: capitalize;
+}
 
-/* ── RESPONSIVE ── */
+
+/* Modal */
+.modal {
+  display: none; 
+  position: fixed; 
+  z-index: 1000; 
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%; 
+  overflow: auto;   
+}
+
+.modal-content {
+  background-color: #ffffff;
+  margin: 10% auto; 
+  padding: 30px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  width: 90%; 
+  max-width: 500px;
+  position: relative;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+ 
+.modal-content h1 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: #333;
+  font-family: 'Verdana', sans-serif;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
+
+.modal-content label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: #555;
+}
+
+.modal-content input[type="text"] {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 20px;
+  border: 1px solid #cdd5de;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-family: 'Barlow', sans-serif;
+  transition: border-color 0.2s;
+  box-sizing: border-box;
+}
+
+.modal-content input[type="text"]:focus {
+  border-color: #000;
+  outline: none;
+}
+
+.close {
+  color: #aaa;
+  position: absolute;
+  top: 20px;
+  right: 25px;
+  font-size: 28px;
+  font-weight: bold;
+  transition: color 0.2s;
+}
+
+.close:hover,
+.close:focus {
+  color: #333;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Comment Modal Specifics */
+.comment-bulletin-board {
+  max-height: 200px;
+  margin-bottom: 15px;
+  background: #f9f9f9;
+  border: 1px solid #eee;
+  border-radius: 6px;
+  padding: 10px;
+  overflow-y: auto; /* Ito ang maglalagay ng scroller sa loob lang kapag lumagpas ng 200px */
+}
+
+.comment-structure-body {
+  padding: 10px;
+  background: #ffffff; /* Ginawang puti ang background para umangat sa #f9f9f9 na board */
+  border: 1px solid #e0e0e0; /* Pinaligiran ng border para mukhang individual cards */
+  border-radius: 6px; /* Para medyo rounded ang bawat comment */
+  margin-bottom: 10px; /* Ito yung gap sa pagitan ng mga comments */
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.comment-structure-body:last-child {
+  margin-bottom: 0; /* Tinatanggal ang gap sa pinakahuling comment para pantay ang spacing sa ilalim */
+}
+
+.comment-structure-body p {
+  margin: 5px 0;
+  color: #555;
+  font-size: 0.85rem;
+}
+
+.modal-content button[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  background-color: #5a5a5a;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  text-transform: capitalize;
+}
+
+.modal-content button[type="submit"]:hover {
+  background-color: #444;
+}
+
+/* ── ALERT BOXES ── */
+.alert-box {
+  background: #f8d7da;
+  color: #721c24;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #f5c6cb;
+  margin-bottom: 15px;
+}
+
+.alert-box-report-item {
+  background-color: #67C090;
+  color: white;
+  padding: 10px 20px;
+  position: fixed;
+  top: 14%;
+  right: 20px;
+  z-index: 1000;
+  max-width: calc(100% - 40px);
+  box-sizing: border-box;
+}
+
+.alert-box-my-post {
+  background-color: #f15656;
+  color: white;
+  padding: 10px 20px;
+  position: fixed;
+  top: 14%;
+  right: 20px;
+  z-index: 1000;
+  max-width: calc(100% - 40px);
+  box-sizing: border-box;
+}
+
+
+
+/* RESPONSIVE */
 @media (max-width: 1024px) {
   .container {
-    margin-left: 200px;
-    padding: 20px;
-  }
-
-  .announcement-card {
-    width: 55%;
-    margin-left: 20px;
-  }
-
-  .recent-posting-card {
-    max-width: 100%;
-    margin-left: 20px;
-  }
-
-  .report-item-container {
     margin-left: 0;
     padding: 20px;
   }
-
-  .report-item-box {
-    padding: 25px 35px;
-  }
-}
-
-@media (max-width: 768px) {
-  .container {
-    margin-left: 0;
-    padding: 16px;
-    margin-top: 60px;
-  }
-
-  .dashboard-card-1 h1 {
-    font-size: 22px;
-  }
-
-  .dashboard-card1-content {
-    gap: 15px;
-    font-size: 13px;
-  }
-
- .dashboard-content {
-  display: flex;
-  gap: 20px;
-  align-items: flex-start;
-  margin-top: 20px;
-  width: 100%;
-}
 
   .announcement-card {
     position: static;
@@ -679,19 +815,124 @@ body.sidebar-collapsed .report-item-box {
   }
 
   .recent-posting-card {
+    max-width: 100%;
+    margin-left: 0;
+  }
+
+  body.sidebar-collapsed .recent-posting-card {
+    max-width: 100%;
+  }
+
+    
+  .report-item-container {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .report-item-box {
+    padding: 25px 30px;
+    max-width: 600px;
+  }
+
+  body.sidebar-collapsed .report-item-box {
+    max-width: 600px;
+    transform: none;
+  }
+
+  
+  .report-container {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .report-box {
+    max-width: 600px;
+  }
+
+    
+  .post-container {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .post-data-container {
+    max-width: 600px;
+  }
+
+    
+  .about-container {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .about-box {
+    max-width: 600px;
+  }
+}
+
+
+
+@media (max-width: 768px) {
+
+  .container {
+    margin-left: 0;
+    padding: 16px;
+    margin-top: 60px;
+  }
+
+  
+  .dashboard-card-1 h1 {
+    font-size: 22px;
+  }
+
+  .dashboard-card1-content {
+    gap: 15px;
+    font-size: 13px;
+  }
+
+  .dashboard-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: flex-start;
+    margin-top: 20px;
+    width: 100%;
+  }
+
+  
+  .announcement-card {
+    position: static;
+    transform: none;
+    width: 100%;
+    max-width: 100%;
+    margin-left: 0;
+    height: auto;
+    overflow: visible;
+    margin-bottom: 16px;
+  }
+
+    
+  .recent-posting-card {
     width: 100%;
     max-width: 100%;
     margin-left: 0;
   }
 
+    
   .report-item-container {
     margin-top: 70px;
-    margin-left: 0;
     padding: 16px;
+    padding-left: 16px;
   }
 
   .report-item-box {
     padding: 20px 25px;
+    max-width: 100%;
+  }
+
+  body.sidebar-collapsed .report-item-box {
+    max-width: 100%;
+    transform: none;
   }
 
   .form-group {
@@ -704,43 +945,106 @@ body.sidebar-collapsed .report-item-box {
     padding-top: 0;
     min-width: unset;
   }
+
+  
+  .report-container {
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 75px;
+  }
+
+  .report-box {
+    max-width: 100%;
+  }
+
+  .post-card {
+    border-radius: 6px;
+  }
+
+  .post-user-info strong {
+    font-size: 1rem;
+  }
+
+  .post-content {
+    padding: 12px;
+    min-height: 80px;
+    font-size: 0.95rem;
+  }
+
+  .post-image {
+    padding: 0 12px;
+  }
+
+  .post-image img {
+    max-height: 300px;
+    min-height: 150px;
+  }
+
+    
+  .post-container {
+    padding: 75px 16px 80px 16px;
+  }
+
+  .post-data-container {
+    max-width: 100%;
+  }
+
+  .post-data h6 {
+    font-size: 1rem;
+  }
+
+  .post-actions button,
+  .btn-delete {
+    padding: 8px;
+    font-size: 0.8rem;
+  }
+
+    
+  .about-container {
+    padding: 75px 16px 80px 16px;
+  }
+
+  .about-box {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .about-box strong {
+    margin-left: 0;
+    justify-content: center;
+  }
+
+    
+  .modal-content {
+    width: 92%;
+    max-width: 450px;
+    padding: 25px;
+    margin: 12% auto;
+  }
+
+  .modal-content h1 {
+    font-size: 1.3rem;
+  }
+
+  
+  .alert-box-report-item,
+  .alert-box-my-post {
+    right: 16px;
+    padding: 8px 16px;
+    font-size: 0.9rem;
+  }
 }
 
-.alert-box {
-  background: #f8d7da; 
-  color: #721c24; 
-  padding: 10px; 
-  border-radius: 5px; 
-  border: 1px solid #f5c6cb; 
-  margin-bottom: 15px;
-}
 
-.alert-box-report-item {
-  background-color: #67C090; 
-  color: white; 
-  padding: 10px 20px; 
-  position: fixed;    
-  top: 14%;          
-  right: 20px;        
-  z-index: 1000;      
-}
-
-.alert-box-my-post{
-  background-color: #f15656; 
-  color: white; 
-  padding: 10px 20px; 
-  position: fixed;    
-  top: 14%;          
-  right: 20px;        
-  z-index: 1000;      
-}
 
 @media (max-width: 480px) {
   .container {
     padding: 12px;
     margin-top: 55px;
+    margin-left: 0;
   }
 
+  
   .dashboard-card-1 {
     padding: 14px;
     border-width: 3px;
@@ -749,13 +1053,21 @@ body.sidebar-collapsed .report-item-box {
   .dashboard-card-1 h1 {
     font-size: 18px;
     letter-spacing: 1px;
+    gap: 6px;
+  }
+
+  .dashboard-card-1 h1 span {
+    font-size: 16px;
   }
 
   .dashboard-card1-content {
     font-size: 12px;
     gap: 10px;
+    flex-direction: column;
+    align-items: flex-start;
   }
 
+  
   .recent-posting-card {
     padding: 16px;
     border-radius: 14px;
@@ -773,6 +1085,11 @@ body.sidebar-collapsed .report-item-box {
     font-size: 14px;
   }
 
+  .posted-data p {
+    font-size: 11px;
+  }
+
+    
   .announcement-card {
     padding: 14px;
     border-radius: 6px;
@@ -788,9 +1105,12 @@ body.sidebar-collapsed .report-item-box {
     font-size: 1rem;
   }
 
+    
   .report-item-container {
     margin-top: 55px;
     padding: 12px;
+    padding-left: 12px;
+    padding-bottom: 70px;
   }
 
   .report-item-box {
@@ -806,16 +1126,278 @@ body.sidebar-collapsed .report-item-box {
     font-size: 12px;
   }
 
+  .form-group label {
+    font-size: 10px;
+  }
+
   .form-group input[type="text"],
   .form-group input[type="date"],
   .form-group textarea,
   .form-group select,
   .form-group input[type="file"] {
     font-size: 12px;
+    padding: 7px 10px;
   }
 
   .btn-report {
     font-size: 12px;
     padding: 10px;
+  }
+
+    
+  .report-container {
+    padding: 65px 12px 70px 12px;
+  }
+
+  .report-box {
+    max-width: 100%;
+  }
+
+  .post-card {
+    border-radius: 4px;
+  }
+
+  .post-user-info {
+    padding: 12px;
+  }
+
+  .post-user-info strong {
+    font-size: 0.95rem;
+  }
+
+  .post-user-info .timestamp {
+    font-size: 0.78rem;
+  }
+
+  .post-title {
+    font-size: 1rem;
+  }
+
+  .post-content {
+    padding: 10px 12px;
+    min-height: 60px;
+    font-size: 0.9rem;
+  }
+
+  .post-image {
+    padding: 0 10px;
+    margin-top: 6px;
+    margin-bottom: 6px;
+  }
+
+  .post-image img {
+    max-height: 250px;
+    min-height: 120px;
+    border-radius: 6px;
+  }
+
+  .post-actions {
+    padding: 8px 10px;
+    gap: 6px;
+  }
+
+  .post-actions button {
+    padding: 8px;
+    font-size: 0.75rem;
+    border-radius: 16px;
+  }
+
+    
+  .post-container {
+    padding: 65px 12px 70px 12px;
+  }
+
+  .post-data-container {
+    max-width: 100%;
+    border-radius: 8px;
+  }
+
+  .post-data h6 {
+    font-size: 0.95rem;
+    padding: 8px;
+  }
+
+  .post-data p {
+    padding: 8px;
+    font-size: 0.85rem;
+  }
+
+  .btn-delete {
+    padding: 8px;
+    font-size: 0.8rem;
+    border-radius: 20px;
+  }
+
+  .about-container {
+    padding: 65px 12px 70px 12px;
+  }
+
+  .about-box {
+    padding: 16px;
+    border-radius: 8px;
+  }
+
+  .about-box p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .modal-content {
+    width: 94%;
+    max-width: 100%;
+    margin: 15% auto;
+    padding: 20px;
+    border-radius: 0;
+  }
+
+  .modal-content h1 {
+    font-size: 1.2rem;
+    margin-bottom: 16px;
+  }
+
+  .modal-content label {
+    font-size: 0.85rem;
+  }
+
+  .modal-content input[type="text"] {
+    padding: 8px 10px;
+    margin-bottom: 16px;
+    font-size: 0.9rem;
+  }
+
+  .close {
+    top: 15px;
+    right: 18px;
+    font-size: 24px;
+  }
+
+  .no-recent-items,
+  .no-report-alert {
+    font-size: 1rem;
+    margin-top: 30px;
+  }
+
+  .alert-box-report-item,
+  .alert-box-my-post {
+    right: 12px;
+    padding: 8px 14px;
+    font-size: 0.85rem;
+    top: 12%;
+  }
+}
+
+
+@media (max-width: 360px) {
+
+  .container {
+    padding: 10px;
+    margin-top: 50px;
+  }
+
+  .dashboard-card-1 {
+    padding: 12px;
+    border-width: 2px;
+  }
+
+  .dashboard-card-1 h1 {
+    font-size: 16px;
+    letter-spacing: 0.5px;
+  }
+
+  .dashboard-card-1 h1 span {
+    font-size: 14px;
+  }
+
+  .dashboard-card1-content {
+    font-size: 11px;
+    gap: 8px;
+  }
+
+  .dashboard-card1-content span {
+    letter-spacing: 1px;
+  }
+
+  .recent-posting-card {
+    height: 250px;
+    padding: 14px;
+    border-radius: 10px;
+  }
+
+  .recent-header {
+    top: -14px;
+    margin: -14px -14px 5px -14px;
+    padding: 12px 14px;
+    font-size: 0.9rem;
+  }
+
+  .report-item-container {
+    margin-top: 50px;
+    padding: 10px;
+  }
+
+  .report-item-box {
+    padding: 14px;
+  }
+
+  .report-item-header h2 {
+    font-size: 14px;
+    letter-spacing: 0.05em;
+  }
+
+  .report-container {
+    padding: 60px 10px 65px 10px;
+  }
+
+  .post-container {
+    padding: 60px 10px 65px 10px;
+  }
+
+  .post-actions button,
+  .btn-delete {
+    padding: 7px;
+    font-size: 0.7rem;
+    border-radius: 14px;
+  }
+
+  .about-container {
+    padding: 60px 10px 65px 10px;
+  }
+
+  .about-box {
+    padding: 14px;
+  }
+
+  .about-box p {
+    font-size: 0.85rem;
+  }
+
+  .modal-content {
+    margin: 20% auto;
+    padding: 16px;
+  }
+
+  .modal-content h1 {
+    font-size: 1.1rem;
+    margin-bottom: 14px;
+    padding-bottom: 8px;
+  }
+
+  .modal-content input[type="text"] {
+    padding: 7px 8px;
+    margin-bottom: 14px;
+    font-size: 0.85rem;
+  }
+
+  .no-recent-items,
+  .no-report-alert {
+    font-size: 0.9rem;
+    margin-top: 25px;
+  }
+
+  .alert-box-report-item,
+  .alert-box-my-post {
+    right: 10px;
+    padding: 6px 12px;
+    font-size: 0.8rem;
   }
 }
