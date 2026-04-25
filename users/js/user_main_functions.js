@@ -17,12 +17,20 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-// modal for edit ng post
+// modal for edit ng post and comment
 document.addEventListener("click", function(event) {
-    if (event.target.classList.contains("btn-edit")) {
-        var targetModalId = event.target.getAttribute("data-modal");
-        var modal = document.getElementById(targetModalId);
-        modal.style.display = "block";
+    var editBtn = event.target.closest(".btn-edit");
+    var commentBtn = event.target.closest(".btn-comment");
+    
+    if (editBtn || commentBtn) {
+        var btn = editBtn || commentBtn;
+        var targetModalId = btn.getAttribute("data-modal");
+        if (targetModalId) {
+            var modal = document.getElementById(targetModalId);
+            if (modal) {
+                modal.style.display = "block";
+            }
+        }
     }
 
     if (event.target.classList.contains("close")) {
