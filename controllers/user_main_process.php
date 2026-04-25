@@ -30,8 +30,15 @@ if (isset($_SESSION['user_id'])) {
     $joinedDate = "N/A";
 }
 
+
+// ito naman para sa pagdisplay ng petsa sa dashboard at sa report item
+  date_default_timezone_set('Asia/Manila');
+   $current_date = date('l, F j, Y');
+   $item_date = date('Y-m-d');
+
+
 // ito naman yung ginawa ko para sa report_item para makapag post direkta sa database at ipasok ang image sa folder
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['item_name'])) {
 
     $author = $_POST['username'];
     $itemName = $_POST['item_name'];
@@ -69,10 +76,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   
 }
 
-// ito naman para sa pagdisplay ng petsa sa dashboard at sa report item
-date_default_timezone_set('Asia/Manila');
-$current_date = date('l, F j, Y');
-$item_date = date('Y-m-d');
+
 
 // Ito yung logic para sa reported items AND dashboard recent item posting using array ginawa ko to 
 // para isahan nalang yung logic tapos dalawang function na yung gagana :>
@@ -120,5 +124,35 @@ if (isset($_GET['delete_post'])) {
             exit();
         }
 }
+
+
+// Logic para sa comments para lumabas sa bulletin board para sa ilalagay sa comment modal sa reports.php
+$query = "SELECT * FROM comments";
+$result = mysqli_query($conn, $query);
+
+$comments = [];
+
+if($result && mysqli_num_rows($result) > 0){
+    while($row = mysqli_fetch_assoc($result)){
+        $comments[] = $row;
+    }
+}
+
+
+// ito yung logic sa pag popost ng comment para makita mo sa bulletin board sa reports.php
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['user_comment']) && isset($_POST['item_id'])) {
+    $comment = trim($_POST['user_comment']);
+    $item_id = $_POST['item_id'];
+    $commenter = isset($userName) ? $userName : "Guest"; 
+    $posted_date = date('Y-m-d');
+
+    $stmt = $conn->prepare("INSERT INTO comments (item_id, username, user_comment, posted_by) VALUES (?, ?, ?, ?)");
+    $stmt->bind_param('isss', $item_id, $commenter, $comment, $posted_date);
+    $stmt->execute();
+
+    header("Location: ../users/reports.php");
+    exit();
+}
+
 
 ?>
