@@ -29,6 +29,7 @@ document.addEventListener("click", function(event) {
             var modal = document.getElementById(targetModalId);
             if (modal) {
                 modal.style.display = "block";
+                document.body.style.overflow = "hidden";
             }
         }
     }
