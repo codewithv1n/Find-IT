@@ -4,7 +4,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 include '../controllers/connect_db.php';
 
-// Ito yung logic ko for username, joined date displaying :>
+// Ito yung logic ko for username, joined date displaying sa dashboard ng mag lologin na user :>
 if (isset($_SESSION['user_id'])) {
     $userId = $_SESSION['user_id'];
    
@@ -90,6 +90,8 @@ if($result && mysqli_num_rows($result) > 0){
         $items[] = $row;
         $recent_items[] = $row;
     }
+}else{
+    echo "No items reported";
 }
 
 
@@ -136,6 +138,8 @@ if($result && mysqli_num_rows($result) > 0){
     while($row = mysqli_fetch_assoc($result)){
         $comments[] = $row;
     }
+}else{
+    echo "No Comments be the first one";
 }
 
 
