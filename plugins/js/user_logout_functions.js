@@ -8,3 +8,13 @@ async function logout() {
         console.error("Connection error:", error);
     }
 }
+
+
+// DOM manipulation sa innertext ng button ng logout
+document.addEventListener("DOMContentLoaded", () =>{
+    const btnLogout = document.getElementById('btnLogout');
+     btnLogout.addEventListener("click", () => {
+        btnLogout.innerHTML = "Logging out...";
+    })
+});
+
