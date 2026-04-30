@@ -32,13 +32,13 @@ if (isset($_SESSION['user_id'])) {
 
 
 // ito naman para sa pagdisplay ng petsa sa dashboard at sa report item
-  date_default_timezone_set('Asia/Manila');
-   $current_date = date('l, F j, Y');
-   $item_date = date('Y-m-d');
+date_default_timezone_set('Asia/Manila');
+$current_date = date('l, F j, Y');
+$item_date = date('Y-m-d');
 
 
 // ito naman yung ginawa ko para sa report_item para makapag post direkta sa database at ipasok ang image sa folder
-if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['item_name'])) {
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['item_name']) && !isset($_POST['edit_post'])) {
 
     $author = $_POST['username'];
     $itemName = $_POST['item_name'];
@@ -59,7 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['item_name'])) {
         }
     }
 
- 
+
     $stmt = $conn->prepare("INSERT INTO reported_items (username, item_name, item_description, image_path, item_date) VALUES (?, ?, ?, ?, ?)");
     $stmt->bind_param("sssss", $author, $itemName, $itemDescription, $imageItem, $itemDate);
 
@@ -76,7 +76,25 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['item_name'])) {
   
 }
 
+// logic para sa edit form modal kung saan pwede akong mag update ng item name and description
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['edit_post'])) {
+ $itemName = $_POST['item_name'];
+ $itemDescription = $_POST['item_description'];
+ $itemID = $_POST['id'];
 
+ $stmt = $conn->prepare("UPDATE reported_items SET item_name = ?, item_description = ? WHERE id = ?");
+ $stmt->bind_param("ssi", $itemName, $itemDescription, $itemID);
+
+   if($stmt->execute()){
+    $notif = "Update Information Successfully";
+    header("Location: ../users/my_posts.php?notif=" . urlencode($notif) . "&notif_type=success");
+    exit();
+  }else{
+    $notif = "Update Information Failed";
+    header("Location: ../users/my_posts.php?notif=" . urlencode($notif) . "&notif_type=error");
+    exit();
+  }
+}
 
 // Ito yung logic para sa reported items AND dashboard recent item posting using array ginawa ko to 
 // para isahan nalang yung logic tapos dalawang function na yung gagana :>
@@ -118,11 +136,11 @@ if (isset($_GET['delete_post'])) {
         
         if ($stmt->execute()) {
             $notif = "Post Deleted Successfully";
-            header("Location: ../users/my_posts.php?notif=" . urlencode($notif));
+            header("Location: ../users/my_posts.php?notif=" . urlencode($notif) . "&notif_type=success");
             exit();
         }else{
             $notif = "Post Failed to Delete";
-            echo '$notif';
+            header("Location: ../users/my_posts.php?notif=" . urlencode($notif) . "&notif_type=error");
             exit();
         }
 }
@@ -138,9 +156,8 @@ if($result && mysqli_num_rows($result) > 0){
     while($row = mysqli_fetch_assoc($result)){
         $comments[] = $row;
     }
-}else{
-    echo "No Comments be the first one";
 }
+
 
 
 // ito yung logic sa pag popost ng comment para makita mo sa bulletin board sa reports.php
