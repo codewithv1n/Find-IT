@@ -1,7 +1,7 @@
 <?php
-$host = "localhost";
+$host = "127.0.0.1";
 $dbuser = "root";
-$dbpass = "";
+$dbpass = "VinTheProgrammer2005*";
 $dbname = "find_it_db";
 
 $conn = new mysqli($host, $dbuser, $dbpass, $dbname);
