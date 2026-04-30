@@ -42,11 +42,15 @@ if (!isset($_SESSION['user_id'])) {
 
     <div id="myModal-<?= $my_post['id'] ?>" class="modal">
         <div class="modal-content">
+          <form action="../controllers/user_main_process.php" method="POST">
+            <input type="hidden" name="id" value="<?= $my_post['id'] ?>">
+            <input type="hidden" name="edit_post" value="1">
             <h1>Edit</h1>
-            <label>Item Name:</label><input type="text" value="<?= htmlspecialchars($my_post['item_name']) ?>">
-            <label>Descriptions:</label><input type="text" value="<?= htmlspecialchars($my_post['item_description']) ?>">
+            <label>Item Name:</label><input type="text" name="item_name" value="<?= htmlspecialchars($my_post['item_name']) ?>">
+            <label>Descriptions:</label><input type="text" name="item_description" value="<?= htmlspecialchars($my_post['item_description']) ?>">
             <button type="submit">Save Changes</button>
             <span class="close">&times;</span>
+          </form>
         </div>
     </div>
     <?php endforeach; ?>
@@ -57,7 +61,8 @@ if (!isset($_SESSION['user_id'])) {
 
 
    <?php if (isset($_GET['notif'])): ?>
-      <div class="alert-box-my-post">
+      <?php $notifClass = (isset($_GET['notif_type']) && $_GET['notif_type'] === 'success') ? 'alert-box-success' : 'alert-box-error'; ?>
+      <div class="alert-box-my-post <?= $notifClass ?>">
          <?php echo htmlspecialchars($_GET['notif']); ?>
       </div>
    <?php endif; ?>
