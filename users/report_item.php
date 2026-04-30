@@ -43,7 +43,7 @@ if (!isset($_SESSION['user_id'])) {
 
       <div class="form-group">
        <label for="author">Author</label>
-       <input type="text" name="username" value="<?php echo htmlspecialchars($userName); ?>" readonly>
+       <input type="text" name="username" value="<?= htmlspecialchars($userName); ?>" readonly>
       </div>
 
       <div class="form-group">
@@ -64,7 +64,7 @@ if (!isset($_SESSION['user_id'])) {
 
       <div class="form-group">
         <label for="item_date">Item Date</label>
-        <input type="date" value=<?php echo htmlspecialchars($item_date);?> name="item_date" disabled>
+        <input type="date" value=<?= htmlspecialchars($item_date);?> name="item_date" readonly>
       </div>
 
       <button type="submit" class="btn-report" id ="btnReport">Report Item</button>
