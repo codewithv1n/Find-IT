@@ -720,21 +720,21 @@ body.sidebar-collapsed .report-item-box {
   border: 1px solid #eee;
   border-radius: 6px;
   padding: 10px;
-  overflow-y: auto; /* Ito ang maglalagay ng scroller sa loob lang kapag lumagpas ng 200px */
+  overflow-y: auto; 
 }
 
 .comment-structure-body {
   padding: 10px;
-  background: #ffffff; /* Ginawang puti ang background para umangat sa #f9f9f9 na board */
-  border: 1px solid #e0e0e0; /* Pinaligiran ng border para mukhang individual cards */
-  border-radius: 6px; /* Para medyo rounded ang bawat comment */
-  margin-bottom: 10px; /* Ito yung gap sa pagitan ng mga comments */
+  background: #ffffff; 
+  border: 1px solid #e0e0e0; 
+  border-radius: 6px; 
+  margin-bottom: 10px; 
   font-size: 0.9rem;
   color: #333;
 }
 
 .comment-structure-body:last-child {
-  margin-bottom: 0; /* Tinatanggal ang gap sa pinakahuling comment para pantay ang spacing sa ilalim */
+  margin-bottom: 0; 
 }
 
 .comment-structure-body p {
@@ -783,7 +783,6 @@ body.sidebar-collapsed .report-item-box {
 }
 
 .alert-box-my-post {
-  background-color: #f15656;
   color: white;
   padding: 10px 20px;
   position: fixed;
@@ -792,6 +791,15 @@ body.sidebar-collapsed .report-item-box {
   z-index: 1000;
   max-width: calc(100% - 40px);
   box-sizing: border-box;
+  border-radius: 5px;
+}
+
+.alert-box-success {
+  background-color: #67C090;
+}
+
+.alert-box-error {
+  background-color: #f15656;
 }
 
 
