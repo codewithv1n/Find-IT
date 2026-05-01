@@ -21,7 +21,7 @@ include '../controllers/user_main_process.php';
   </div>
 
   <div class="user-actions">
-    <button onclick="logout()" class="logout-btn">Logout</button>
+    <button onclick="logout()" class="logout-btn" id="btnLogout">Logout</button>
   </div>
 </header>
 
