@@ -19,26 +19,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // modal for edit ng post and comment
 document.addEventListener("click", function(event) {
-    var editBtn = event.target.closest(".btn-edit");
-    var commentBtn = event.target.closest(".btn-comment");
-    
-    if (editBtn || commentBtn) {
-        var btn = editBtn || commentBtn;
-        var targetModalId = btn.getAttribute("data-modal");
-        if (targetModalId) {
-            var modal = document.getElementById(targetModalId);
-            if (modal) {
-                modal.style.display = "block";
-                document.body.style.overflow = "hidden";
-            }
+    const openBtn = event.target.closest(".btn-edit, .btn-comment");
+    if (openBtn) {
+        const targetModalId = openBtn.getAttribute("data-modal");
+        const modal = document.getElementById(targetModalId);
+        if (modal) {
+            modal.style.display = "block";
+            document.body.style.overflow = "hidden"; 
         }
     }
-
-    if (event.target.classList.contains("close")) {
-        event.target.closest(".modal").style.display = "none";
-    }
     
-    if (event.target.classList.contains("modal")) {
-        event.target.style.display = "none";
+    const isCloseBtn = event.target.classList.contains("close");
+    const isBackdrop = event.target.classList.contains("modal");
+
+    if (isCloseBtn || isBackdrop) {
+        const modal = event.target.closest(".modal");
+        if (modal) {
+            modal.style.display = "none";
+            document.body.style.overflow = "auto"; 
+        }
     }
 });
